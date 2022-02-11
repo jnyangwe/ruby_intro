@@ -18,7 +18,6 @@ def max_2_sum arr
     max_largest = -1.0/0.0
     max_2nd_largest = -1.0/0.0
     for val in arr
-      print val
       if val >= max_2nd_largest
         if val >= max_largest
           max_2nd_largest = max_largest
@@ -49,19 +48,58 @@ end
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  return "Hello, " + name
 end
 
 def starts_with_consonant? s
   # YOUR CODE HERE
+  s = s.downcase
+  result = /^[^aeiou].*/ =~ s  
+  if result.nil? 
+    return false
+  else
+    is_letter = /^[\w].*/ =~ s
+    if is_letter.nil?
+      return false 
+    else
+      return true
+    end
+  end 
 end
 
 def binary_multiple_of_4? s
   # YOUR CODE HERE
+  # check if not binary
+  condition = /[^01]+/ =~ s
+  if not condition.nil?
+    return false
+  else
+    multiple_of_4 = /0$/ =~ s 
+    if multiple_of_4.nil?
+      return false 
+    else
+      return true
+    end
+  end
 end
 
 # Part 3
 
 class BookInStock
 # YOUR CODE HERE
+  def initialize(isbn, price)
+    if isbn.length() == 0 || price <= 0
+      raise ArgumentError.new("Invalid argument(s)")
+    end
+    @isbn = isbn
+    @price = price 
+  end
+
+  attr_accessor :isbn
+  attr_accessor :price
+
+  def price_as_string
+    return format("$%.2f", @price)
+  end
+
 end
